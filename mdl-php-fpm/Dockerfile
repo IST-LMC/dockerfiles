@@ -20,6 +20,9 @@ RUN apt install -y php${php_version}-apc php${php_version}-curl php${php_version
 RUN apt install -y php${php_version}-pgsql php${php_version}-pspell php${php_version}-xmlrpc php${php_version}-xsl php${php_version}-memcache php${php_version}-memcached
 RUN apt install -y php${php_version}-zip php${php_version}-soap php${php_version}-bcmath php${php_version}-bz2 php${php_version}-mbstring 
 
+RUN mkdir -p /var/log/php-fpm
+COPY ./www-conf /etc/php/${php_version}/fpm/pool.d/www-conf
+
 RUN mkdir -p /var/www/moodle
 
 RUN git clone --depth 1 https://github.com/moodle/moodle.git /var/www/moodle
